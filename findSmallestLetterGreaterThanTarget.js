@@ -49,27 +49,30 @@
 // };
 
 // solution 1:-
-// var nextGreatestLetter = function (letters, target) {
-//   let sortedLetters = [...letters, target].sort();
-//   const alphabets = new Set(sortedLetters);
-//   let previous = "";
-//   for (const char of alphabets) {
-//     if (previous === target) return char;
-//     previous = char;
-//   }
-//   return letters[0];
-// };
-// console.log(nextGreatestLetter(["x", "x", "y", "y"], "z"));
+var nextGreatestLetter = function (letters, target) {
+  let sortedLetters = [...letters, target].sort();
+  const alphabets = new Set(sortedLetters);
+  let previous = "";
+  for (const char of alphabets) {
+    if (previous === target) return char;
+    previous = char;
+  }
+  return letters[0];
+};
+console.log(nextGreatestLetter(["c", "f", "j"], "d"));
 
 // solution 2:-
 var nextGreatestLetter = function (letters, target) {
   let start = 0,
     end = letters.length - 1;
+
   if (target >= letters[letters.length - 1]) return letters[0];
 
   while (end >= start) {
     let middle = Math.floor((end + start) / 2);
+
     if (letters[middle] > target) {
+      // j > g
       end = middle - 1;
     } else {
       start = middle + 1;
@@ -77,4 +80,4 @@ var nextGreatestLetter = function (letters, target) {
   }
   return letters[start];
 };
-nextGreatestLetter(["c", "f", "j"], "d");
+nextGreatestLetter(["c", "f", "j", "l", "q"], "g");
